@@ -1,0 +1,401 @@
+:root {
+  --bg-ink: #070205;
+  --bg-lacquer: #120408;
+  --crimson: #c91f28;
+  --crimson-glow: rgba(217, 38, 48, 0.35);
+  --vermilion: #e83828;
+  --gold: #d9b26f;
+  --gold-dim: rgba(217, 178, 111, 0.32);
+  --gold-soft: rgba(217, 178, 111, 0.14);
+  --parchment: #f3e5cf;
+  --font-serif: 'Shippori Mincho', 'Georgia', serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Mono', 'Consolas', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-ink);
+  color: var(--parchment);
+  font-family: var(--font-serif);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ambient Oriental Night Background */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(120, 12, 24, 0.16) 0%, rgba(28, 4, 10, 0.45) 45%, #060204 100%);
+}
+
+.bg-radial-moon {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(65vw, 560px);
+  height: min(65vw, 560px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 165, 92, 0.06) 0%, rgba(185, 28, 36, 0.04) 48%, transparent 72%);
+  filter: blur(24px);
+}
+
+.bg-mist {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 235, 205, 0.008) 0px,
+      rgba(255, 235, 205, 0.008) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+/* Main Stage Layout */
+.stage-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 44px);
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px 68px;
+}
+
+/* Side Vertical Oriental Scrolls */
+.side-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.68;
+  transition: opacity 0.5s ease;
+}
+
+.side-scroll:hover {
+  opacity: 0.95;
+}
+
+.vertical-kanji {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: var(--font-serif);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  letter-spacing: 0.38em;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(217, 38, 48, 0.45);
+}
+
+.scroll-line {
+  width: 1px;
+  height: clamp(60px, 12vh, 130px);
+  background: linear-gradient(to bottom, transparent, var(--gold-dim), var(--crimson), transparent);
+}
+
+/* Central Oriental Frame */
+.canvas-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 42%, #110509 0%, #090306 70%, #050103 100%);
+  border: 1px solid var(--gold-dim);
+  box-shadow:
+    0 0 0 4px rgba(9, 3, 6, 0.95),
+    0 0 0 5px rgba(201, 31, 40, 0.28),
+    0 20px 65px rgba(0, 0, 0, 0.88),
+    0 0 55px rgba(185, 22, 32, 0.16),
+    inset 0 0 40px rgba(0, 0, 0, 0.75);
+  padding: 28px 14px 18px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Traditional Oriental Lattice Corners */
+.corner-ornament {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  border-color: var(--gold);
+  opacity: 0.78;
+}
+
+.corner-ornament::before,
+.corner-ornament::after {
+  content: '';
+  position: absolute;
+  border-color: var(--crimson);
+}
+
+.corner-ornament.tl {
+  top: 6px;
+  left: 6px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+}
+.corner-ornament.tl::before {
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--crimson);
+  border-left: 1px solid var(--crimson);
+}
+
+.corner-ornament.tr {
+  top: 6px;
+  right: 6px;
+  border-top: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+.corner-ornament.tr::before {
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--crimson);
+  border-right: 1px solid var(--crimson);
+}
+
+.corner-ornament.bl {
+  bottom: 6px;
+  left: 6px;
+  border-bottom: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+}
+.corner-ornament.bl::before {
+  bottom: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1px solid var(--crimson);
+  border-left: 1px solid var(--crimson);
+}
+
+.corner-ornament.br {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+.corner-ornament.br::before {
+  bottom: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1px solid var(--crimson);
+  border-right: 1px solid var(--crimson);
+}
+
+/* Subtle Header Inside Frame */
+.frame-header {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  opacity: 0.75;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.poem-divider {
+  color: var(--crimson);
+  font-size: 0.65rem;
+}
+
+.poem-title {
+  font-weight: 700;
+  color: var(--parchment);
+}
+
+/* Canvas */
+#ascii-canvas {
+  display: block;
+  image-rendering: auto;
+}
+
+/* Traditional Vermilion Hanko Stamp */
+.hanko-stamp {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid rgba(226, 48, 42, 0.82);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eb362e;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.92rem;
+  background: rgba(180, 20, 24, 0.12);
+  box-shadow: 0 0 12px rgba(226, 48, 42, 0.25), inset 0 0 6px rgba(226, 48, 42, 0.2);
+  transform: rotate(-4deg);
+  pointer-events: none;
+  opacity: 0.86;
+}
+
+/* Subtle Hint Banner */
+.hint-banner {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(14, 4, 8, 0.78);
+  border: 1px solid rgba(217, 178, 111, 0.22);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(243, 229, 207, 0.78);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  white-space: nowrap;
+}
+
+.hint-banner.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(6px);
+}
+
+.hint-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  box-shadow: 0 0 8px var(--vermilion);
+  animation: pulse-dot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(0.9); opacity: 0.65; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Floating Controls Bar */
+.controls-bar {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: rgba(15, 5, 9, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.75), 0 0 20px rgba(201, 31, 40, 0.15);
+}
+
+.ctrl-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--parchment);
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.ctrl-btn:hover {
+  background: rgba(201, 31, 40, 0.18);
+  border-color: rgba(217, 178, 111, 0.38);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(201, 31, 40, 0.28);
+}
+
+.ctrl-btn:active {
+  transform: scale(0.96);
+}
+
+.btn-kanji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(201, 31, 40, 0.25);
+  border: 1px solid rgba(217, 178, 111, 0.45);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ctrl-btn kbd {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(217, 178, 111, 0.28);
+  color: var(--gold);
+}
+
+.ctrl-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--gold-dim);
+}
+
+@media (max-width: 760px) {
+  .side-scroll {
+    display: none;
+  }
+  .stage-wrapper {
+    padding: 8px 8px 64px;
+  }
+  .canvas-frame {
+    padding: 24px 8px 12px;
+  }
+  .ctrl-btn kbd {
+    display: none;
+  }
+  .hint-banner {
+    font-size: 0.64rem;
+    padding: 3px 9px;
+  }
+}

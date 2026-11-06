@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>彼岸花 — Higanbana | For You</title>
+  <meta name="description" content="Uma carta em papel washi que se transforma em um Lírio-Aranha Vermelho (Higanbana) entre brasas e luar oriental." />
+  <meta name="theme-color" content="#090306" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700;800&family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient Oriental Background Vignette & Paper Grain -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="bg-radial-moon"></div>
+    <div class="bg-mist"></div>
+  </div>
+
+  <!-- Main Stage -->
+  <main class="stage-wrapper">
+    <!-- Left Vertical Oriental Inscription -->
+    <aside class="side-scroll side-left" aria-hidden="true">
+      <div class="vertical-kanji">彼岸花・赤き想いの華</div>
+      <div class="scroll-line"></div>
+    </aside>
+
+    <!-- Canvas Frame with Oriental Lattice Corners -->
+    <section class="canvas-frame" id="canvas-container" aria-label="Animação interativa Lírio-Aranha Vermelho">
+      <!-- Traditional Oriental Corner Ornaments -->
+      <span class="corner-ornament tl" aria-hidden="true"></span>
+      <span class="corner-ornament tr" aria-hidden="true"></span>
+      <span class="corner-ornament bl" aria-hidden="true"></span>
+      <span class="corner-ornament br" aria-hidden="true"></span>
+
+      <!-- Top Subtle Header Inside Frame -->
+      <header class="frame-header">
+        <span class="poem-tag">花開彼岸</span>
+        <span class="poem-divider">✦</span>
+        <span class="poem-title">FOR YOU</span>
+        <span class="poem-divider">✦</span>
+        <span class="poem-tag">永遠の愛</span>
+      </header>
+
+      <!-- The ASCII / Character Grid Canvas -->
+      <canvas id="ascii-canvas"></canvas>
+
+      <!-- Traditional Vermilion Hanko Stamp -->
+      <div class="hanko-stamp" title="愛 (Amor)">
+        <span>愛</span>
+      </div>
+
+      <!-- Subtle Interactive Hint -->
+      <div class="hint-banner" id="hint-banner">
+        <span class="hint-dot"></span>
+        <span id="hint-text">Toque no selo escarlate ou aguarde o espírito de fogo</span>
+      </div>
+    </section>
+
+    <!-- Right Vertical Oriental Inscription -->
+    <aside class="side-scroll side-right" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <div class="vertical-kanji">千年の夜を越えて君へ</div>
+    </aside>
+  </main>
+
+  <!-- Floating Oriental Control Bar -->
+  <nav class="controls-bar" aria-label="Controles da animação">
+    <button type="button" class="ctrl-btn" id="btn-restart" title="Reiniciar animação (Tecla R)">
+      <span class="btn-kanji">再</span>
+      <span class="btn-label">Renascer <kbd>R</kbd></span>
+    </button>
+    <div class="ctrl-sep" aria-hidden="true"></div>
+    <button type="button" class="ctrl-btn" id="btn-ignite" title="Acender o selo agora (Espaço / Clique)">
+      <span class="btn-kanji">焔</span>
+      <span class="btn-label">Despertar Lírio</span>
+    </button>
+    <div class="ctrl-sep" aria-hidden="true"></div>
+    <button type="button" class="ctrl-btn" id="btn-sound" aria-pressed="false" title="Ativar/Desativar melodia oriental ambiente">
+      <span class="btn-kanji" id="sound-kanji">音</span>
+      <span class="btn-label" id="sound-label">Som: Off</span>
+    </button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
